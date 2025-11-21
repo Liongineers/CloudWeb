@@ -167,14 +167,6 @@ export default function NewReviewPage() {
             </div>
 
             <div className="space-y-3">
-              <div className="p-4 bg-green-50 dark:bg-green-900/10 border border-green-200 dark:border-green-800/50 rounded-lg">
-                <p className="text-sm text-green-900 dark:text-green-300 font-medium mb-1">
-                  Composite Microservice with FK Validation
-                </p>
-                <p className="text-xs text-green-800 dark:text-green-400">
-                  This form validates both writer_id and seller_id against the Users microservice before delegating to the Reviews microservice. Enforces the unique constraint (writer_id, seller_id).
-                </p>
-              </div>
 
               <div className="p-4 bg-blue-50 dark:bg-blue-900/10 border border-blue-200 dark:border-blue-800/50 rounded-lg">
                 <p className="text-sm text-blue-900 dark:text-blue-300 font-medium mb-1">

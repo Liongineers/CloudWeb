@@ -93,16 +93,6 @@ export default function SellerProfileClient() {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="mb-8 p-4 bg-blue-50 dark:bg-blue-900/10 border border-blue-200 dark:border-blue-800/50 rounded-xl">
-          <p className="text-sm text-blue-900 dark:text-blue-300 font-medium mb-1">
-            Microservices Architecture Demo
-          </p>
-          <p className="text-xs text-blue-800 dark:text-blue-400">
-            This page demonstrates the composite microservice fetching data from 3 atomic microservices in parallel:
-            Users (VM), Products (Cloud Run), and Reviews (Cloud Run). Statistics are aggregated by the composite service.
-          </p>
-        </div>
-
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
           <Card hover={false} className="text-center">
             <div className="text-3xl font-bold text-gray-900 dark:text-white mb-1">{profile.statistics.totalProducts}</div>

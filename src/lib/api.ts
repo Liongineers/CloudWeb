@@ -69,18 +69,9 @@ export const api = {
   },
 
   async getUsers(): Promise<User[]> {
-    const userIds = [
-      'a0af41aa-a456-45ce-9e5a-963a3972338c',
-      '81c78020-90d3-4e07-b186-0846333b04ec'
-    ];
-    
-    const profiles = await Promise.all(
-      userIds.map(id => this.getSellerProfile(id).catch(() => null))
-    );
-    
-    return profiles
-      .filter((profile): profile is SellerProfile => profile !== null)
-      .map(profile => profile.seller);
+    const res = await fetch(`${API_BASE_URL}/api/users`);
+    if (!res.ok) throw new Error('Failed to fetch users');
+    return res.json();
   },
 
   async createProduct(data: CreateProductData) {
