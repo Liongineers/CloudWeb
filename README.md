@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Student Marketplace Web UI
+
+A modern, campus-focused web interface for students to buy and sell items locally.
+
+## About
+Student Marketplace connects university students to trade textbooks, dorm supplies, graduation regalia, electronics, furniture, subscriptions, and more. The platform facilitates discovery and initial contact, with all transactions happening offline for safety and convenience.
+
+## Features
+- Browse student sellers and their profiles
+- View available items with detailed information
+- Read and write seller reviews
+- List items for sale with categories
+- Dark and light mode support
+- Mobile-responsive design
+- Clean, minimal black and white aesthetic
+
+## Tech Stack
+- Next.js 15 with App Router
+- TypeScript
+- Tailwind CSS
+- Static site generation for Cloud Storage
 
 ## Getting Started
 
-First, run the development server:
-
+### Development
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Build for Production
+```bash
+npm run build
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Static files generated in `out/` directory.
 
-## Learn More
+### Environment Variables
+Create `.env.local`:
+```
+NEXT_PUBLIC_API_URL=https://composite-microservice-471529071641.us-east1.run.app
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Deployment
+Deploy to Google Cloud Storage for static hosting.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## How It Works
+1. Students browse available items by category
+2. Interested buyers view seller profiles and contact info
+3. Buyers and sellers connect via phone to arrange offline transaction
+4. After transaction, buyers can leave reviews
