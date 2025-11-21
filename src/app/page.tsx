@@ -17,22 +17,13 @@ export default function Home() {
         const data = await api.getUsers();
         setSellers(data);
         setLoading(false);
-      } catch (err) {
+      } catch {
         setError('Failed to load sellers. Please check if the composite microservice is running.');
         setLoading(false);
       }
     }
     loadSellers();
   }, []);
-
-  const categories = [
-    { name: 'Textbooks', count: '50+' },
-    { name: 'Dorm Supplies', count: '30+' },
-    { name: 'Graduation', count: '15+' },
-    { name: 'Electronics', count: '40+' },
-    { name: 'Furniture', count: '25+' },
-    { name: 'Other', count: '20+' },
-  ];
 
   return (
     <Layout>
