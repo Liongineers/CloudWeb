@@ -23,13 +23,15 @@ export interface Product {
 }
 
 export interface Review {
-  review_id: string;
+  review_id?: string;
   writer_id: string;
-  seller_id: string;
-  rating: number;
+  seller_id?: string;
+  rating?: number;
+  stars?: number;
   comment: string | null;
-  created_at: string;
-  updated_at: string;
+  created_at?: string;
+  updated_at?: string;
+  latest_update?: string;
 }
 
 export interface SellerProfile {
@@ -59,6 +61,13 @@ export interface CreateReviewData {
   seller_id: string;
   rating: number;
   comment: string;
+}
+
+export interface CreateUserData {
+  name: string;
+  role: string;
+  phoneNumber: string;
+  merch: string;
 }
 
 export const api = {
@@ -103,6 +112,19 @@ export const api = {
     if (!res.ok) {
       const error = await res.json();
       throw new Error(error.message || 'Failed to create review');
+    }
+    return res.json();
+  },
+
+  async createUser(data: CreateUserData) {
+    const res = await fetch(`${API_BASE_URL}/api/users`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    if (!res.ok) {
+      const error = await res.json();
+      throw new Error(error.message || 'Failed to create user');
     }
     return res.json();
   },

@@ -99,7 +99,9 @@ export default function SellerProfileClient() {
             <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">Items Listed</div>
           </Card>
           <Card hover={false} className="text-center">
-            <div className="text-3xl font-bold text-gray-900 dark:text-white mb-1">{profile.statistics.averageRating.toFixed(1)}</div>
+            <div className="text-3xl font-bold text-gray-900 dark:text-white mb-1">
+              {profile.statistics.averageRating ? profile.statistics.averageRating.toFixed(1) : 'N/A'}
+            </div>
             <div className="text-sm text-gray-600 dark:text-gray-400 font-medium">Average Rating</div>
           </Card>
           <Card hover={false} className="text-center">
@@ -159,22 +161,29 @@ export default function SellerProfileClient() {
             </Card>
           ) : (
             <div className="space-y-4">
-              {profile.reviews.map((review: Review) => (
-                <Card key={review.review_id} hover={false}>
-                  <div className="flex items-start justify-between mb-3">
-                    <div className="flex items-center gap-2">
-                      <div className="flex items-center bg-blue-100 dark:bg-blue-900/30 px-3 py-1 rounded-lg">
-                        <span className="text-lg font-bold text-blue-700 dark:text-blue-400">{review.rating}</span>
-                        <span className="text-sm text-blue-600 dark:text-blue-500 ml-1">/5</span>
+              {profile.reviews.map((review: Review, index: number) => {
+                const rating = review.rating || review.stars || 0;
+                const date = review.created_at || review.latest_update || review.updated_at;
+                return (
+                  <Card key={review.review_id || `review-${index}`} hover={false}>
+                    <div className="flex items-start justify-between mb-3">
+                      <div className="flex items-center gap-3">
+                        <div className="flex items-center bg-blue-100 dark:bg-blue-900/30 px-3 py-1 rounded-lg">
+                          <span className="text-lg font-bold text-blue-700 dark:text-blue-400">{rating}</span>
+                          <span className="text-sm text-blue-600 dark:text-blue-500 ml-1">/5</span>
+                        </div>
+                        <div className="text-sm text-gray-600 dark:text-gray-400">
+                          <span className="font-medium">Anonymous Reviewer</span>
+                        </div>
                       </div>
+                      <span className="text-sm text-gray-500 dark:text-gray-500">
+                        {date ? new Date(date).toLocaleDateString() : 'N/A'}
+                      </span>
                     </div>
-                    <span className="text-sm text-gray-500 dark:text-gray-500">
-                      {new Date(review.created_at).toLocaleDateString()}
-                    </span>
-                  </div>
-                  <p className="text-gray-700 dark:text-gray-300">{review.comment || 'No comment provided'}</p>
-                </Card>
-              ))}
+                    <p className="text-gray-700 dark:text-gray-300">{review.comment || 'No comment provided'}</p>
+                  </Card>
+                );
+              })}
             </div>
           )}
         </div>
