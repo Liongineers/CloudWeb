@@ -15,9 +15,17 @@ export default function Home() {
     async function loadSellers() {
       try {
         const data = await api.getUsers();
-        setSellers(data);
+        // Ensure data is an array
+        if (Array.isArray(data)) {
+          setSellers(data);
+        } else {
+          setSellers([]);
+          setError('Invalid data format received from API');
+        }
         setLoading(false);
-      } catch {
+      } catch (err) {
+        console.error('Error loading sellers:', err);
+        setSellers([]);
         setError('Failed to load sellers. Please check if the composite microservice is running.');
         setLoading(false);
       }
@@ -67,7 +75,7 @@ export default function Home() {
         )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {sellers.map((seller) => (
+          {Array.isArray(sellers) && sellers.map((seller) => (
             <Link key={seller.user_id} href={`/sellers/${seller.user_id}`}>
               <Card className="cursor-pointer h-full group">
                 <div className="flex items-start space-x-4">
