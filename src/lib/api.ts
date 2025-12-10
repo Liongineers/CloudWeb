@@ -1,4 +1,12 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://composite-microservice-471529071641.us-east1.run.app';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://composite-microservice-yc5uha5vsa-ue.a.run.app';
+
+const getHeaders = () => {
+  const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+  return {
+    'Content-Type': 'application/json',
+    ...(token ? { 'Authorization': `Bearer ${token}` } : {}),
+  };
+};
 
 export interface User {
   user_id: string;
@@ -63,21 +71,33 @@ export interface CreateReviewData {
 
 export const api = {
   async getSellerProfile(sellerId: string): Promise<SellerProfile> {
-    const res = await fetch(`${API_BASE_URL}/api/sellers/${sellerId}/profile`);
+    const res = await fetch(`${API_BASE_URL}/api/sellers/${sellerId}/profile`, {
+      headers: getHeaders(),
+    });
     if (!res.ok) throw new Error('Failed to fetch seller profile');
     return res.json();
   },
 
   async getUsers(): Promise<User[]> {
-    const res = await fetch(`${API_BASE_URL}/api/users`);
+    const res = await fetch(`${API_BASE_URL}/api/users`, {
+      headers: getHeaders(),
+    });
     if (!res.ok) throw new Error('Failed to fetch users');
+    return res.json();
+  },
+
+  async getProfile(): Promise<User> {
+    const res = await fetch(`${API_BASE_URL}/api/profile`, {
+      headers: getHeaders(),
+    });
+    if (!res.ok) throw new Error('Failed to fetch profile');
     return res.json();
   },
 
   async createProduct(data: CreateProductData) {
     const res = await fetch(`${API_BASE_URL}/api/products`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: getHeaders(),
       body: JSON.stringify(data),
     });
     if (!res.ok) {
@@ -97,7 +117,7 @@ export const api = {
   async createReview(data: CreateReviewData) {
     const res = await fetch(`${API_BASE_URL}/api/reviews`, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: getHeaders(),
       body: JSON.stringify(data),
     });
     if (!res.ok) {

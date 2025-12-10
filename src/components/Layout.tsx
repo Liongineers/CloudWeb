@@ -2,10 +2,13 @@
 
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
+import { useAuth } from '@/contexts/AuthContext';
 
 const ThemeToggle = dynamic(() => import('./ThemeToggle'), { ssr: false });
 
 export default function Layout({ children }: { children: React.ReactNode }) {
+  const { user, login, logout } = useAuth();
+
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-[#0f0f0f]">
       <nav className="border-b border-gray-200 dark:border-gray-800 bg-white dark:bg-[#1a1a1a] sticky top-0 z-50 shadow-sm">
@@ -24,6 +27,24 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <Link href="/reviews/new" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors text-sm font-medium">
                 Write Review
               </Link>
+              {user ? (
+                <div className="flex items-center space-x-4">
+                  <span className="text-sm text-gray-600 dark:text-gray-300">Welcome, {user.name}</span>
+                  <button
+                    onClick={logout}
+                    className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+                  >
+                    Logout
+                  </button>
+                </div>
+              ) : (
+                <button
+                  onClick={login}
+                  className="text-sm font-medium text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 transition-colors"
+                >
+                  Login
+                </button>
+              )}
               <ThemeToggle />
             </div>
           </div>
