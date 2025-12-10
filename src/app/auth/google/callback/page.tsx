@@ -8,7 +8,7 @@ export default function GoogleCallback() {
 
   useEffect(() => {
     const handleCallback = () => {
-      // Read query params from the browser URL
+      
       const params = new URLSearchParams(window.location.search);
       const token = params.get('token');
       const userParam = params.get('user');
