@@ -21,14 +21,14 @@ export default function GoogleCallback() {
           localStorage.setItem('user', JSON.stringify(user));
 
           // Redirect to main app
-          window.location.href = '/';
+          window.location.href = '/index.html';
         } catch (error) {
           console.error('Error parsing user data:', error);
-          router.push('/');
+          router.push('/index.html');
         }
       } else {
         console.error('No token or user in callback');
-        router.push('/');
+        router.push('/index.html');
       }
     };
 
