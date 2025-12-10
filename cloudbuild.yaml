@@ -1,0 +1,38 @@
+steps:
+  # 1) Build the container image
+  - name: gcr.io/cloud-builders/docker
+    args:
+      [
+        "build",
+        "-t",
+        "gcr.io/$PROJECT_ID/cloudweb-frontend",
+        "."
+      ]
+
+  # 2) Push the image to Container Registry / Artifact Registry
+  - name: gcr.io/cloud-builders/docker
+    args:
+      [
+        "push",
+        "gcr.io/$PROJECT_ID/cloudweb-frontend"
+      ]
+
+  # 3) Deploy to Cloud Run
+  - name: gcr.io/google.com/cloudsdktool/cloud-sdk
+    entrypoint: gcloud
+    args:
+      [
+        "run",
+        "deploy",
+        "cloudweb-frontend",
+        "--image",
+        "gcr.io/$PROJECT_ID/cloudweb-frontend",
+        "--region",
+        "us-east1",
+        "--platform",
+        "managed",
+        "--allow-unauthenticated"
+      ]
+
+images:
+  - "gcr.io/$PROJECT_ID/cloudweb-frontend"
