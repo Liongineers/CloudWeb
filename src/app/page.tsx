@@ -12,6 +12,31 @@ export default function Home() {
   const [error, setError] = useState('');
 
   useEffect(() => {
+    // Redirect / to /index.html to ensure consistent URL
+    if (window.location.pathname === '/') {
+      window.location.replace('/index.html');
+      return;
+    }
+
+    // Handle OAuth callback - check for token and user in URL params
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('token');
+    const user = urlParams.get('user');
+    
+    if (token && user) {
+      // Store them in localStorage
+      localStorage.setItem('token', token);
+      localStorage.setItem('user', user);
+      
+      // Clean up URL but keep /index.html
+      window.history.replaceState({}, '', '/index.html');
+      
+      // Reload to update auth state throughout the app
+      window.location.reload();
+      return; // Exit early, page will reload
+    }
+
+    // Load sellers (existing logic)
     async function loadSellers() {
       try {
         const data = await api.getUsers();
@@ -75,8 +100,8 @@ export default function Home() {
         )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {Array.isArray(sellers) && sellers.map((seller) => (
-            <Link key={seller.user_id} href={`/sellers/${seller.user_id}`}>
+          {sellers.map((seller) => (
+            <Link key={seller.user_id} href={`/sellers/${seller.user_id}.html`}>
               <Card className="cursor-pointer h-full group">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-700 flex items-center justify-center text-white font-bold text-lg shrink-0">
