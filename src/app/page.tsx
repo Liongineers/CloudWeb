@@ -36,8 +36,8 @@ export default function Home() {
       // Clean up URL
       window.history.replaceState({}, '', '/');
       
-      // Reload to update auth state throughout the app
-      window.location.reload();
+      // Reload to update auth state throughout the app (delayed to allow logs to be seen)
+      setTimeout(() => window.location.reload(), 10000);
       return; // Exit early, page will reload
     }
 
