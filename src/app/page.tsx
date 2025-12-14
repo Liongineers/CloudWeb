@@ -36,8 +36,8 @@ export default function Home() {
       // Clean up URL
       window.history.replaceState({}, '', '/');
       
-      // Reload to update auth state throughout the app (delayed to allow logs to be seen)
-      setTimeout(() => window.location.reload(), 10000);
+      // Reload to update auth state throughout the app
+      window.location.reload();
       return; // Exit early, page will reload
     }
 
@@ -68,7 +68,7 @@ export default function Home() {
       <div className="bg-gradient-to-b from-blue-50 to-white dark:from-gray-900 dark:to-[#0f0f0f] py-16 px-4 sm:px-6 lg:px-8 -mt-0">
         <div className="max-w-7xl mx-auto text-center">
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-            Your Campus Marketplace
+            Your Campus Marketplace Test
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
             Buy and sell textbooks, dorm supplies, graduation regalia, and more with fellow students. Connect directly and transact safely offline.
