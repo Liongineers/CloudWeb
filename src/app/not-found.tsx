@@ -38,12 +38,6 @@ export default function NotFound() {
     return (
       <Layout>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="mb-6 p-4 bg-blue-50 dark:bg-blue-900/10 border border-blue-200 dark:border-blue-800/50 rounded-lg">
-            <p className="text-sm text-blue-900 dark:text-blue-300">
-              Loading seller profile dynamically (this page will be pre-generated in the next build)
-            </p>
-          </div>
-
           {/* Render seller profile inline */}
           <div className="bg-white dark:bg-[#1a1a1a] border-b border-gray-200 dark:border-gray-800 rounded-lg p-6 mb-6">
             <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
@@ -56,8 +50,7 @@ export default function NotFound() {
 
           <Card hover={false}>
             <p className="text-gray-700 dark:text-gray-300">
-              This seller exists but their page has not been generated yet. Refresh in a few hours 
-              or <Link href={`/sellers/${sellerProfile.seller.user_id}/`} className="text-blue-600 hover:underline">click here</Link> to retry.
+              View full profile for {sellerProfile.seller.name} with all products and reviews.
             </p>
           </Card>
         </div>
