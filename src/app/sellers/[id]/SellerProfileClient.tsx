@@ -5,9 +5,11 @@ import { useParams } from 'next/navigation';
 import Layout from '@/components/Layout';
 import Card from '@/components/Card';
 import { api, SellerProfile, Product, Review } from '@/lib/api';
+import { useAuth } from '@/contexts/AuthContext';
 
 export default function SellerProfileClient() {
   const params = useParams();
+  const { user } = useAuth();
   const [profile, setProfile] = useState<SellerProfile | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -164,6 +166,9 @@ export default function SellerProfileClient() {
               {profile.reviews.map((review: Review, index: number) => {
                 const rating = review.rating || review.stars || 0;
                 const date = review.created_at || review.latest_update || review.updated_at;
+                const isCurrentUser = user && review.writer_id === user.user_id;
+                const displayName = isCurrentUser ? 'You' : (review.writer_name || 'Anonymous Reviewer');
+                
                 return (
                   <Card key={review.review_id || `review-${index}`} hover={false}>
                     <div className="flex items-start justify-between mb-3">
@@ -173,7 +178,7 @@ export default function SellerProfileClient() {
                           <span className="text-sm text-blue-600 dark:text-blue-500 ml-1">/5</span>
                         </div>
                         <div className="text-sm text-gray-600 dark:text-gray-400">
-                          <span className="font-medium">{review.writer_name || 'Anonymous Reviewer'}</span>
+                          <span className="font-medium">{displayName}</span>
                         </div>
                       </div>
                       <span className="text-sm text-gray-500 dark:text-gray-500">
