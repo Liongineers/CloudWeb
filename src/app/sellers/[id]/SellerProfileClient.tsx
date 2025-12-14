@@ -122,12 +122,12 @@ export default function SellerProfileClient() {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {profile.products.map((product: Product) => (
-                <Card key={product.prod_id}>
+                <Card key={product.product_id}>
                   <div className="mb-3">
                     <span className="inline-block px-2.5 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-md text-xs font-medium mb-2">
                       {product.category}
                     </span>
-                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">{product.prod_name}</h3>
+                    <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-2">{product.product_name}</h3>
                     <p className="text-sm text-gray-600 dark:text-gray-400 line-clamp-2 min-h-[40px]">
                       {product.description || 'No description provided'}
                     </p>
@@ -173,7 +173,7 @@ export default function SellerProfileClient() {
                           <span className="text-sm text-blue-600 dark:text-blue-500 ml-1">/5</span>
                         </div>
                         <div className="text-sm text-gray-600 dark:text-gray-400">
-                          <span className="font-medium">Anonymous Reviewer</span>
+                          <span className="font-medium">{review.writer_name || 'Anonymous Reviewer'}</span>
                         </div>
                       </div>
                       <span className="text-sm text-gray-500 dark:text-gray-500">

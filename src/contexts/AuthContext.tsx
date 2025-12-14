@@ -51,7 +51,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
   }, []);
 
   const login = () => {
-    window.location.href = `${process.env.NEXT_PUBLIC_API_URL || 'https://composite-microservice-yc5uha5vsa-ue.a.run.app'}/auth/google`;
+    window.location.href = `${process.env.NEXT_PUBLIC_API_URL || 'https://composite-microservice-471529071641.us-east1.run.app'}/auth/google`;
   };
 
   const logout = () => {
@@ -59,7 +59,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
     localStorage.removeItem('user');
     setToken(null);
     setUser(null);
-    window.location.href = '/index.html';
+    window.location.href = '/';
   };
 
   const value = {

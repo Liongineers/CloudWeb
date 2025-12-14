@@ -12,12 +12,6 @@ export default function Home() {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    // Redirect / to /index.html to ensure consistent URL
-    if (window.location.pathname === '/') {
-      window.location.replace('/index.html');
-      return;
-    }
-
     // Handle OAuth callback - check for token and user in URL params
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get('token');
@@ -28,8 +22,8 @@ export default function Home() {
       localStorage.setItem('token', token);
       localStorage.setItem('user', user);
       
-      // Clean up URL but keep /index.html
-      window.history.replaceState({}, '', '/index.html');
+      // Clean up URL
+      window.history.replaceState({}, '', '/');
       
       // Reload to update auth state throughout the app
       window.location.reload();
@@ -101,7 +95,7 @@ export default function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {sellers.map((seller) => (
-            <Link key={seller.user_id} href={`/sellers/${seller.user_id}.html`}>
+            <Link key={seller.user_id} href={`/sellers/${seller.user_id}`}>
               <Card className="cursor-pointer h-full group">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-700 flex items-center justify-center text-white font-bold text-lg shrink-0">

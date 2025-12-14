@@ -15,9 +15,9 @@ export default function NewProductPage() {
   const [sellers, setSellers] = useState<User[]>([]);
   const [error, setError] = useState('');
   const [formData, setFormData] = useState<CreateProductData>({
-    prod_name: '',
+    product_name: '',
     category: '',
-    seller_info: '',
+    seller_id: '',
     description: '',
     availability: 1,
     price: 0,
@@ -31,7 +31,7 @@ export default function NewProductPage() {
         const data = await api.getUsers();
         setSellers(data);
         if (data.length > 0) {
-          setFormData(prev => ({ ...prev, seller_info: data[0].user_id }));
+          setFormData(prev => ({ ...prev, seller_id: data[0].user_id }));
         }
         setLoadingSellers(false);
       } catch {
@@ -49,7 +49,7 @@ export default function NewProductPage() {
 
     try {
       await api.createProduct(formData);
-      router.push(`/sellers/${formData.seller_info}`);
+      router.push(`/sellers/${formData.seller_id}`);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to create product');
       setLoading(false);
@@ -80,8 +80,8 @@ export default function NewProductPage() {
           <form onSubmit={handleSubmit} className="space-y-6">
             <Input
               label="Item Name"
-              name="prod_name"
-              value={formData.prod_name}
+              name="product_name"
+              value={formData.product_name}
               onChange={handleChange}
               placeholder="e.g., Calculus Textbook 3rd Edition"
               required
@@ -110,8 +110,8 @@ export default function NewProductPage() {
             <div className="mb-5">
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1.5">Seller</label>
               <select
-                name="seller_info"
-                value={formData.seller_info}
+                name="seller_id"
+                value={formData.seller_id}
                 onChange={handleChange}
                 className="w-full px-4 py-2.5 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-[#1a1a1a] text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-600 focus:border-transparent"
                 required

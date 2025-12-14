@@ -1,4 +1,4 @@
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://composite-microservice-yc5uha5vsa-ue.a.run.app';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://composite-microservice-471529071641.us-east1.run.app';
 
 const getHeaders = () => {
   const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
@@ -17,10 +17,10 @@ export interface User {
 }
 
 export interface Product {
-  prod_id: string;
-  prod_name: string;
+  product_id: string;
+  product_name: string;
   category: string;
-  seller_info: string;
+  seller_id: string;
   description: string | null;
   availability: number;
   price: number;
@@ -33,6 +33,7 @@ export interface Product {
 export interface Review {
   review_id?: string;
   writer_id: string;
+  writer_name?: string;
   seller_id?: string;
   rating?: number;
   stars?: number;
@@ -54,9 +55,9 @@ export interface SellerProfile {
 }
 
 export interface CreateProductData {
-  prod_name: string;
+  product_name: string;
   category: string;
-  seller_info: string;
+  seller_id: string;
   description: string;
   availability: number;
   price: number;
@@ -72,6 +73,7 @@ export interface CreateReviewData {
 }
 
 export interface CreateUserData {
+  email: string;
   name: string;
   role: string;
   phoneNumber: string;
