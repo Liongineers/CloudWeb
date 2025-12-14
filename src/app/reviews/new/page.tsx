@@ -48,7 +48,7 @@ export default function NewReviewPage() {
 
     try {
       await api.createReview(formData);
-      router.push(`/sellers/${formData.seller_id}`);
+      router.push(`/sellers/${formData.seller_id}/`);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to create review');
       setLoading(false);

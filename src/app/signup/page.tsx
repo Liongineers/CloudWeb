@@ -26,7 +26,7 @@ export default function SignUpPage() {
 
     try {
       const user = await api.createUser(formData);
-      router.push(`/sellers/${user.user_id}`);
+      router.push(`/sellers/${user.user_id}/`);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to create account');
       setLoading(false);

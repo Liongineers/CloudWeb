@@ -49,7 +49,7 @@ export default function NewProductPage() {
 
     try {
       await api.createProduct(formData);
-      router.push(`/sellers/${formData.seller_id}`);
+      router.push(`/sellers/${formData.seller_id}/`);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to create product');
       setLoading(false);

@@ -21,13 +21,13 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <Link href="/" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors text-sm font-medium">
                 Browse
               </Link>
-              <Link href="/signup" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors text-sm font-medium">
+              <Link href="/signup/" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors text-sm font-medium">
                 Sign Up
               </Link>
-              <Link href="/products/new" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors text-sm font-medium">
+              <Link href="/products/new/" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors text-sm font-medium">
                 Sell Item
               </Link>
-              <Link href="/reviews/new" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors text-sm font-medium">
+              <Link href="/reviews/new/" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors text-sm font-medium">
                 Write Review
               </Link>
               {user ? (
@@ -69,9 +69,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <h3 className="font-semibold text-gray-900 dark:text-white mb-3">Quick Links</h3>
               <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
                 <li><Link href="/" className="hover:text-gray-900 dark:hover:text-white">Browse Sellers</Link></li>
-                <li><Link href="/signup" className="hover:text-gray-900 dark:hover:text-white">Create Account</Link></li>
-                <li><Link href="/products/new" className="hover:text-gray-900 dark:hover:text-white">List an Item</Link></li>
-                <li><Link href="/reviews/new" className="hover:text-gray-900 dark:hover:text-white">Write a Review</Link></li>
+                <li><Link href="/signup/" className="hover:text-gray-900 dark:hover:text-white">Create Account</Link></li>
+                <li><Link href="/products/new/" className="hover:text-gray-900 dark:hover:text-white">List an Item</Link></li>
+                <li><Link href="/reviews/new/" className="hover:text-gray-900 dark:hover:text-white">Write a Review</Link></li>
               </ul>
             </div>
             <div>

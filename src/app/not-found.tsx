@@ -57,7 +57,7 @@ export default function NotFound() {
           <Card hover={false}>
             <p className="text-gray-700 dark:text-gray-300">
               This seller exists but their page has not been generated yet. Refresh in a few hours 
-              or <a href={`/sellers/${sellerProfile.seller.user_id}`} className="text-blue-600 hover:underline">click here</a> to retry.
+              or <Link href={`/sellers/${sellerProfile.seller.user_id}/`} className="text-blue-600 hover:underline">click here</Link> to retry.
             </p>
           </Card>
         </div>

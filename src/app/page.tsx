@@ -95,7 +95,7 @@ export default function Home() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {sellers.map((seller) => (
-            <Link key={seller.user_id} href={`/sellers/${seller.user_id}`}>
+            <Link key={seller.user_id} href={`/sellers/${seller.user_id}/`}>
               <Card className="cursor-pointer h-full group">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-700 flex items-center justify-center text-white font-bold text-lg shrink-0">
