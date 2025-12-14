@@ -19,8 +19,19 @@ export default function Home() {
     
     if (token && user) {
       // Store them in localStorage
-      localStorage.setItem('token', token);
-      localStorage.setItem('user', user);
+      try {
+        const parsedUser = JSON.parse(decodeURIComponent(user));
+        localStorage.setItem('token', token);
+        localStorage.setItem('user', JSON.stringify(parsedUser));
+        
+        console.log('Token:', token);
+        console.log('UserParam:', user);
+        console.log('Parsed user:', parsedUser);
+        console.log('SUCCESSFUL LOGIN');
+      } catch (error) {
+        console.error('Error parsing user data:', error);
+        // Don't store if parsing fails
+      }
       
       // Clean up URL
       window.history.replaceState({}, '', '/');
