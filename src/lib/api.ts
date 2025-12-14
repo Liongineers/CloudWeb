@@ -80,6 +80,12 @@ export interface CreateUserData {
   merch: string;
 }
 
+export interface UpdateUserData {
+  name?: string;
+  phonenumber?: string;
+  merch?: string;
+}
+
 export const api = {
   async getSellerProfile(sellerId: string): Promise<SellerProfile> {
     const res = await fetch(`${API_BASE_URL}/api/sellers/${sellerId}/profile`, {
@@ -151,7 +157,7 @@ export const api = {
     return res.json();
   },
 
-  async updateUser(userId: string, data: Partial<CreateUserData>) {
+  async updateUser(userId: string, data: UpdateUserData) {
     const res = await fetch(`${API_BASE_URL}/api/users/${userId}`, {
       method: 'PATCH',
       headers: getHeaders(),

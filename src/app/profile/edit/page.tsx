@@ -5,15 +5,21 @@ import { useRouter } from 'next/navigation';
 import Layout from '@/components/Layout';
 import Card from '@/components/Card';
 import Button from '@/components/Button';
-import { api, CreateUserData } from '@/lib/api';
+import { api } from '@/lib/api';
 import { useAuth } from '@/contexts/AuthContext';
+
+interface UpdateUserData {
+  name?: string;
+  phonenumber?: string;
+  merch?: string;
+}
 
 export default function EditProfilePage() {
   const router = useRouter();
   const { user } = useAuth();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [formData, setFormData] = useState<Partial<CreateUserData>>({
+  const [formData, setFormData] = useState<UpdateUserData>({
     name: '',
     phonenumber: '',
     merch: '',
