@@ -150,5 +150,18 @@ export const api = {
     }
     return res.json();
   },
+
+  async updateUser(userId: string, data: Partial<CreateUserData>) {
+    const res = await fetch(`${API_BASE_URL}/api/users/${userId}`, {
+      method: 'PATCH',
+      headers: getHeaders(),
+      body: JSON.stringify(data),
+    });
+    if (!res.ok) {
+      const error = await res.json();
+      throw new Error(error.message || 'Failed to update user');
+    }
+    return res.json();
+  },
 };
 
