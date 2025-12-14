@@ -13,12 +13,19 @@ export default function GoogleCallback() {
       const token = params.get('token');
       const userParam = params.get('user');
 
+      console.log('Token:', token);
+      console.log('UserParam:', userParam);
+
       if (token && userParam) {
         try {
           const user = JSON.parse(decodeURIComponent(userParam));
 
+          console.log('Parsed user:', user);
+
           localStorage.setItem('token', token);
           localStorage.setItem('user', JSON.stringify(user));
+
+          console.log('SUCCESSFUL LOGIN');
         } catch (error) {
           console.error('Error parsing user data:', error);
           router.push('/');
