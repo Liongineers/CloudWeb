@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirecting...</title>
+  <script>
+    // Auto-redirect to add trailing slash for Cloud Storage compatibility
+    (function() {
+      const path = window.location.pathname;
+      
+      // If the path doesn't end with a slash and isn't a file with extension
+      if (!path.endsWith('/') && !path.match(/\.[a-z]+$/i)) {
+        // Redirect to the same path with a trailing slash
+        window.location.href = path + '/' + window.location.search + window.location.hash;
+      } else {
+        // If we still get 404, show a proper error page
+        document.body.innerHTML = `
+          <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; font-family: system-ui, -apple-system, sans-serif; padding: 20px; text-align: center;">
+            <h1 style="font-size: 72px; margin: 0; color: #1f2937;">404</h1>
+            <p style="font-size: 24px; color: #6b7280; margin: 20px 0;">Page Not Found</p>
+            <p style="color: #9ca3af; margin-bottom: 30px;">The page you're looking for doesn't exist.</p>
+            <a href="/" style="padding: 12px 24px; background: #3b82f6; color: white; text-decoration: none; border-radius: 6px; font-weight: 500;">Go Home</a>
+          </div>
+        `;
+      }
+    })();
+  </script>
+</head>
+<body>
+  <div style="display: flex; align-items: center; justify-content: center; min-height: 100vh; font-family: system-ui, -apple-system, sans-serif;">
+    <p style="font-size: 18px; color: #6b7280;">Redirecting...</p>
+  </div>
+</body>
+</html>
+
