@@ -26,6 +26,9 @@ export default function GoogleCallback() {
           localStorage.setItem('user', JSON.stringify(user));
 
           console.log('SUCCESSFUL LOGIN');
+          
+          // Redirect to main app with full page reload
+          window.location.href = '/';
         } catch (error) {
           console.error('Error parsing user data:', error);
           router.push('/');
