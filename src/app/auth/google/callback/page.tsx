@@ -19,9 +19,6 @@ export default function GoogleCallback() {
 
           localStorage.setItem('token', token);
           localStorage.setItem('user', JSON.stringify(user));
-
-          // Redirect to main app
-          window.location.href = '/';
         } catch (error) {
           console.error('Error parsing user data:', error);
           router.push('/');
