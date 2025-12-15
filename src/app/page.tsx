@@ -144,7 +144,7 @@ export default function Home() {
           <div className="text-center py-20">
             <p className="text-gray-600 dark:text-gray-400 mb-4">Please log in to view active sellers</p>
             <button 
-              onClick={() => window.location.href = '/auth/google'}
+              onClick={() => window.location.href = `${process.env.NEXT_PUBLIC_API_URL || 'https://composite-microservice-471529071641.us-east1.run.app'}/auth/google`}
               className="px-6 py-3 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-700 transition-colors"
             >
               Log In with Google
