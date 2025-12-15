@@ -23,14 +23,14 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               </Link>
               {user && (
                 <>
-                  <Link href="/signup/" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors text-sm font-medium">
-                    Add Seller Profile
-                  </Link>
                   <Link href="/products/new/" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors text-sm font-medium">
                     Sell Item
                   </Link>
                   <Link href="/reviews/new/" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors text-sm font-medium">
                     Write Review
+                  </Link>
+                  <Link href="/profile/edit/" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors text-sm font-bold">
+                    Account
                   </Link>
                 </>
               )}
