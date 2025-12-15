@@ -21,13 +21,11 @@ export default function Layout({ children }: { children: React.ReactNode }) {
               <Link href="/" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors text-sm font-medium">
                 Browse
               </Link>
-              {!user && (
-                <Link href="/signup/" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors text-sm font-medium">
-                  Sign Up
-                </Link>
-              )}
               {user && (
                 <>
+                  <Link href="/signup/" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors text-sm font-medium">
+                    Add Seller Profile
+                  </Link>
                   <Link href="/products/new/" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors text-sm font-medium">
                     Sell Item
                   </Link>
