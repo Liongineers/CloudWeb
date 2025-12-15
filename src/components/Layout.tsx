@@ -4,8 +4,6 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { useAuth } from '@/contexts/AuthContext';
 
-const ThemeToggle = dynamic(() => import('./ThemeToggle'), { ssr: false });
-
 export default function Layout({ children }: { children: React.ReactNode }) {
   const { user, login, logout } = useAuth();
 
@@ -52,7 +50,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                   Login
                 </button>
               )}
-              <ThemeToggle />
             </div>
           </div>
         </div>
